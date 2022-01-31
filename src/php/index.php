@@ -14,7 +14,7 @@
 	<div class="limiter">
 		<div class="container-loginForm">
 			<div class="wrap-loginForm">
-				<form class="loginForm-form validate-form" action="../php/signIn.php" method="post">
+				<form class="loginForm-form validate-form" action="signIn.php" method="post">
 					<span class="loginForm-form-title">
 						Member sign-in
 					</span>

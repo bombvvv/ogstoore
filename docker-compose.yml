@@ -1,13 +1,34 @@
 version: "3.9"
 
 services:
-    php:
-        container_name: php
+    php1:
+        container_name: php1
         image: php
         restart: always
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: dockerfile
             target: base
+        volumes:
+            - ./src/php:/var/www/html/
         ports:
-            - "${PORT}:80"
+            - "5001:80"
+    php2:
+        container_name: php2
+        image: php
+        restart: always
+        build:
+            context: .
+            dockerfile: dockerfile
+            target: base
+        volumes:
+            - ./src/php:/var/www/html/
+            - "5002:80"
+    nginx:
+        build: ./nginx
+        image: nginx
+        ports:
+            - "8080:80"
+        depends_on:
+            - php1
+            - php2
