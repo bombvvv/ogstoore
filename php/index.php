@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Sign in</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<style>
+    <!-- cssPos -->
+    </style>
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-loginForm">
+			<div class="wrap-loginForm">
+				<form class="loginForm-form validate-form" action="../php/signIn.php" method="post">
+					<span class="loginForm-form-title">
+						Member sign-in
+					</span>
+
+					<div class="wrap-UserInput validate-input" data-validate = "Valid email is required: ex@abc.xyz">						
+						<input class="UserInput" type="text" name="email" placeholder="Email">
+					</div>
+
+					<div class="wrap-UserInput validate-input" data-validate = "Password is required">
+						<input class="UserInput" type="password" name="pass" placeholder="Password">
+					</div>
+					
+					<div class="container-loginButton">
+                    <input class="signinButton" type="submit" value="Submit">
+					</div>
+                    
+                           	<span class="changeLogSign">
+                                If you already have an account try to  <a link rel="stylesheet" type="text/html" href="index.php">login</a>
+                            </span>
+                       </form>

