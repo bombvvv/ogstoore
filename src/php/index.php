@@ -1,37 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Sign in</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-	<style>
-    <!-- cssPos -->
-    </style>
-</head>
-<body>
-	
-	<div class="limiter">
-		<div class="container-loginForm">
-			<div class="wrap-loginForm">
-				<form class="loginForm-form validate-form" action="signIn.php" method="post">
-					<span class="loginForm-form-title">
-						Member sign-in
-					</span>
+<?php
 
-					<div class="wrap-UserInput validate-input" data-validate = "Valid email is required: ex@abc.xyz">						
-						<input class="UserInput" type="text" name="email" placeholder="Email">
-					</div>
+$userDataFile = file_get_contents('data.txt');
+$userData = array();
 
-					<div class="wrap-UserInput validate-input" data-validate = "Password is required">
-						<input class="UserInput" type="password" name="pass" placeholder="Password">
-					</div>
-					
-					<div class="container-loginButton">
-                    <input class="signinButton" type="submit" value="Submit">
-					</div>
-                    
-                           	<span class="changeLogSign">
-                                If you already have an account try to  <a link rel="stylesheet" type="text/html" href="index.php">login</a>
-                            </span>
-                       </form>
+$userDataFile = explode("\n",$userDataFile);
+foreach ( $userDataFile as $singleUser ){
+	$splittedData = explode( ";", $singleUser );
+	$userData[$splittedData[0]] = $splittedData[1];
+}
+
+function main(){
+	global $userData;
+    $email = $_POST['email'];
+    $classId = "5id";
+    $pass = $_POST['pass'].$classId;
+    if (isset($email)) {
+      if (isset($pass)) {
+          if ( $userData[$email] == hash('SHA256',($pass))){
+          echo  str_replace("<!-- mailHere -->","<input type=\"hidden\" name=\"email\" value=".$email.">", str_replace("<!-- cssPos -->",file_get_contents("/css/main.css"),file_get_contents("/html/lobby.html")));
+          return;
+          }
+      }
+    }
+    echo "Wrong email or password, go back to the ";
+    echo '<a href="login.php">login</a>';
+    echo " or register your account in the ";
+    echo '<a href="signin.php">sign-in</a>';
+    echo " page.";
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  main();
+}else{
+	echo str_replace("<!-- cssPos -->",file_get_contents("/css/main.css"),file_get_contents("/html/login.html"));
+}
+
+?>
