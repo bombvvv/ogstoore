@@ -7,7 +7,7 @@ services:
         restart: always
         build:
             context: .
-            dockerfile: dockerfile
+            dockerfile: Dockerfile
             target: base
         volumes:
             - ./src/php:/var/www/html/
@@ -19,10 +19,11 @@ services:
         restart: always
         build:
             context: .
-            dockerfile: dockerfile
+            dockerfile: Dockerfile
             target: base
         volumes:
             - ./src/php:/var/www/html/
+        ports:
             - "5002:80"
     nginx:
         build: ./nginx
