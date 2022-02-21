@@ -9,28 +9,26 @@ function main(){
     $classId = "5id";
     $pass = $_POST['pass'] . $classId;
     $pass = hash('SHA256',($pass));
-    $servername = "db";
+
+    $hostname = "db";
     $username = "root";
     $password = "root";
-    $dbname = "storage";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    }
+    $db = "storage";
+    
       if (isset($email)) {
         if (isset($pass)) {
-          /*
-          $fp = fopen('data.txt', 'a');//opens file in append mode.
-          fwrite($fp, "\n".$email.';'.$pass.';');
-          fclose($fp);
-          */
-          $sql = "INSERT INTO users (username, password) VALUES ($email, $pass)";
-          if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
-          } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+          $dbconnect = mysqli_connect($hostname,$username,$password,$db);
+          if ($dbconnect->connect_error) {
+            die("Database connection failed: " . $dbconnect->connect_error);
           }
-          $conn->close();
+          $query = "INSERT INTO users (username, password) VALUES ('$email', '$pass')";
+          if (!mysqli_query($dbconnect, $query)) {
+            die('An error occurred when submitting your form');
+          } else {
+          echo "New account created";
+          }
+          
+          $dbconnect->close();
           echo str_replace("/*cssPos*/",file_get_contents("css/loginSignin.css"),file_get_contents("html/login.html"));
           return;
         }
