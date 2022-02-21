@@ -9,27 +9,40 @@ function main(){
     $classId = "5id";
     $pass = $_POST['pass'] . $classId;
     $pass = hash('SHA256',($pass));
-    $conn = mysqli_connect(storage, bombv, ciao76 , $dbname);
-    if (isset($email)) {
-      if (isset($pass)) {
-        /*
-        $fp = fopen('data.txt', 'a');//opens file in append mode.
-        fwrite($fp, "\n".$email.';'.$pass.';');
-        fclose($fp);
-        */
-        
-		    echo str_replace("/*cssPos*/",file_get_contents("css/loginSignin.css"),file_get_contents("html/login.html"));
-        return;
-      }
+    $servername = "db";
+    $username = "root";
+    $password = "root";
+    $dbname = "storage";
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
     }
-    echo var_dump($userData);
-    echo " nop";
-}
+      if (isset($email)) {
+        if (isset($pass)) {
+          /*
+          $fp = fopen('data.txt', 'a');//opens file in append mode.
+          fwrite($fp, "\n".$email.';'.$pass.';');
+          fclose($fp);
+          */
+          $sql = "INSERT INTO users (username, password) VALUES ($email, $pass)";
+          if ($conn->query($sql) === TRUE) {
+            echo "New record created successfully";
+          } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+          }
+          $conn->close();
+          echo str_replace("/*cssPos*/",file_get_contents("css/loginSignin.css"),file_get_contents("html/login.html"));
+          return;
+        }
+      }
+      echo var_dump($userData);
+      echo " nop";
+  }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   main();
 }else{
-echo str_replace("/*cssPos*/",file_get_contents("css/loginSignin.css"),file_get_contents("html/index.html"));
+  echo str_replace("/*cssPos*/",file_get_contents("css/loginSignin.css"),file_get_contents("html/index.html"));
 }
 
 ?>
