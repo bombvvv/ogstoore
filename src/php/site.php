@@ -7,13 +7,13 @@ function showError($errorCode, $errorName, $errorDesc){
     echo "{\"$errorName\":\"$errorDesc\"}";
 }
 function main(){
-    
+    print_r($_SESSION);
 
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     main();
   }else{
-      echo str_replace("/*cssPos*/",file_get_contents("css/site.css"),file_get_contents("html/site.html"));
+      echo str_replace("/*cssPos*/",file_get_contents("css/loginSignin.css"),file_get_contents("html/site.html"));
   }
 ?>

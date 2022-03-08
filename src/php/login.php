@@ -1,19 +1,11 @@
 <?php
 
-$userDataFile = file_get_contents('data.txt');
-$userData = array();
-
-$userDataFile = explode("\n",$userDataFile);
-foreach ( $userDataFile as $singleUser ){
-	$splittedData = explode( ";", $singleUser );
-	$userData[$splittedData[0]] = $splittedData[1];
-}
-
 function main(){
 	global $userData;
     $email = $_POST['email'];
     $classId = "5id";
     $pass = $_POST['pass'].$classId;
+
     if (isset($email)) {
       if (isset($pass)) {
           if ( $userData[$email] == hash('SHA256',($pass))){

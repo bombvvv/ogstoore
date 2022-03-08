@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,13 +15,12 @@
 <div class="limiter">
     <div class="container-loginForm">
         <div class="wrap-loginForm">
-            <form class="loginForm-form validate-form" action="../php/store.php" method="post">
+            <form class="loginForm-form validate-form" action="../php/site.php" method="post">
             	<span class="loginForm-form-title">
                     OGSTORE
                 </span>
                 <span class="loginForm-form-title">
                     This is ogstore, you can buy our products clicking on "store".<br>
-                    If you are the owner or a collaborator click on "owner".<br>
                 </span>
                 <div class="container-loginButton">
                     <input class="loginButton" type="submit" value="Store">
