@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 $userData = array(
 	"pippo@coso.com"=>"test",
@@ -46,4 +44,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
->>>>>>> a1bbc582da5c460192087a208abaa98ecb7273e1

@@ -3,24 +3,20 @@ version: "3.9"
 services:
     php1:
         container_name: php1
-        image: php
         restart: always
         build:
             context: ./src/php
             dockerfile: Dockerfile
-            target: base
         volumes:
             - ./src/php:/var/www/html/
         ports:
             - "5001:80"
     php2:
         container_name: php2
-        image: php
         restart: always
         build:
             context: ./src/php
             dockerfile: Dockerfile
-            target: base
         volumes:
             - ./src/php:/var/www/html/
         ports:
