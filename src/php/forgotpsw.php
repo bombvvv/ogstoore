@@ -11,20 +11,18 @@ function main(){
     global $userData;
     $email = $_POST['email'];
     if (isset($email)) {
-
         //sends an email with the otp
-        $totp = sprintf("%'.06d", rand(0, 999999));    
-        $subject = 'otp';
-        $message = 'otp:'.$totp;
-        $headers = 'From: noReply@ogstore.com';
-        mail($email, $subject, $message, $headers);
-
-        $fp = fopen('otpData.txt', 'w');//opens file in append mode.
-        fwrite($fp, $email.';'.sha1($totp).';'.time().";");
-        fclose($fp);
-
-        echo  str_replace("/*mailHere*/","<input type=\"hidden\" name=\"email\" value=".$email.">", str_replace("<!-- cssPos -->",file_get_contents("css/loginSignin.css"),file_get_contents("html/otp.html")));
-        return;
+        $totp = sprintf("%'.06d", rand(0, 999999));
+        $to = $email;
+        $message = "your OTP is: " . $totp;
+        $subject = "change your password";
+        $headers = array(
+            'From' => 'ogstore@store.com',
+            'Reply-To' => 'ogstore@store.com',
+            'X-Mailer' => 'PHP/' . phpversion()
+        );
+        mail($to, $subject, $message, $headers);
+        echo str_replace("/*cssPos*/",file_get_contents("css/loginSignin.css"),file_get_contents("html/otp.html"));
     }
 }
 

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 function showError($errorCode, $errorName, $errorDesc){
     $responseObj = new stdClass();
     http_response_code($errorCode);
@@ -7,7 +7,6 @@ function showError($errorCode, $errorName, $errorDesc){
     echo "{\"$errorName\":\"$errorDesc\"}";
 }
 function main(){
-    print_r($_SESSION);
 
 }
 

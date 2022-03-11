@@ -1,26 +1,39 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
-	<title>Homepage</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-	<style>
-    /*cssPos*/
-    </style>
-</head>
-<div class="limiter">
-    <div class="container-loginForm">
-        <div class="wrap-loginForm">
-            <form class="loginForm-form validate-form" action="../php/site.php" method="post">
-            	<span class="loginForm-form-title">
-                    OGSTORE
-                </span>
-                <span class="loginForm-form-title">
-                    This is ogstore, you can buy our products clicking on "store".<br>
-                </span>
-                <div class="container-loginButton">
-                    <input class="loginButton" type="submit" value="Store">
-				</div>
-                </form>
-            
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        /*cssPos*/
+        </style>
+    </head>
+    <body>
+        <div class="limiter">
+            <div class="container-loginForm">
+                <div class="wrap-loginForm">
+                    <form class="loginForm-form validate-form" action="../login.php" method="post">
+                        <span class="loginForm-form-title">
+                            Member Login
+                        </span>
+    
+                        <div class="wrap-UserInput validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                            <input class="UserInput" type="text" name="email" placeholder="Email">
+                        </div>
+    
+                        <div class="wrap-UserInput validate-input" data-validate = "Password is required">
+                            <input class="UserInput" type="password" name="pass" placeholder="Password">
+                        </div>
+                        
+                        <div class="container-loginButton">
+                        <input class="loginButton" type="submit" value="Submit">
+                        </div>
+                        
+                        <span class="changeLogSign">
+                         If you don't have an account <a link rel="stylesheet" type="text/html" href="../signin.php">sign in</a>
+                         </span>
+                        
+                        <span class="changeLogSign">
+                            <a link rel="stylesheet" type="text/html" href="../forgotpsw.php">forgot your password?</a>
+                        </span>
+                        </form>

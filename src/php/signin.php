@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $userData = array(
 	"pippo@coso.com"=>"test",
 );
@@ -18,14 +18,14 @@ function main(){
     
   if(is_user_logged_in() == true){
     echo str_replace("/*cssPos*/",file_get_contents("css/loginSignin.css"),file_get_contents("html/site.html")); 
-  } else if (isset($email)) {
-      if (isset($pass)) {  
-        $accstkn=1;  
+  } else 
+    if (isset($email)) {
+      if (isset($pass)) { 
         $dbconnect = mysqli_connect($hostname,$username,$password,$db);
         if ($dbconnect->connect_error) {
           die("Database connection failed: " . $dbconnect->connect_error);
         }
-        $query = "INSERT INTO users (username, password, accesstoken) VALUES ('$email', '$pass', '$accstkn')";
+        $query = "INSERT INTO users (username, password) VALUES ('$email', '$pass')";
         if (!mysqli_query($dbconnect, $query)) {
           die('An error occurred when submitting your form');
         } else {
@@ -36,8 +36,6 @@ function main(){
         return;
       }
     }
-  echo var_dump($userData);
-  echo " nop";
 }
 
 function is_user_logged_in(): bool
